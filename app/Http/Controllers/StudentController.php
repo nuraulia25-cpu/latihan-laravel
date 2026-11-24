@@ -31,7 +31,6 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
-
     $validated = $request->validate([
             'name' => 'required',
             'nim' => 'required|numeric|digits:11',

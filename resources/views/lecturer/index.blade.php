@@ -1,15 +1,15 @@
 <x-app>
 
     <x-slot:title>{{ $title }}</x-slot>
-        @if (session("success"))
-            <div class="alert alert-success" role="alert">
-                 {{ session("success") }}
-            </div>
-         @endif
+    @if (session('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session('success') }}
+        </div>
+    @endif
 
     <a class="btn btn-primary mb-3" href="{{ route('lecturer.create') }}" role="button">Create lecturer</a>
 
-    <table class="table table-bordered border-dark table-hover">
+    <table class="table table-bordered border-dark table-hover" id="example">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -24,18 +24,19 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
                     <td>{{ $lecturer->name }}</td>
-                    <td>{{ $lecturer->department->name}}</td>
+                    <td>{{ $lecturer->department->name }}</td>
                     <td>
-                         <a class="btn btn-warning" href="{{ route('lecturer.edit', $lecturer) }}" role="button">Edit</a>
+                        <a class="btn btn-warning" href="{{ route('lecturer.edit', $lecturer) }}"
+                            role="button">Edit</a>
 
-                             <form method="POST" action="{{ route('lecturer.update', $lecturer) }}" class="d-inline">
-                               @csrf
-                                @method('delete')
+                        <form method="POST" action="{{ route('lecturer.update', $lecturer) }}" class="d-inline">
+                            @csrf
+                            @method('delete')
 
-                                <button type="submit" class="btn btn-danger" 
-                                onclick="return confirm('Ate you sure')" >Delete</button>
+                            <button type="submit" class="btn btn-danger"
+                                onclick="return confirm('Ate you sure')">Delete</button>
 
-                             </form>
+                        </form>
                     </td>
                 </tr>
             @endforeach
@@ -44,4 +45,3 @@
     </table>
 
 </x-app>
-
