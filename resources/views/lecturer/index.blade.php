@@ -23,7 +23,11 @@
             @foreach ($lecturers as $lecturer)
                 <tr>
                     <th scope="row">{{ $loop->iteration }}</th>
-                    <td>{{ $lecturer->name }}</td>
+                    <td>
+                        <img src="{{ $lecturer->avatar ? asset('storage/' . $lecturer->avatar) : asset('images/no-profil.png') }}"
+                            alt="" class="" width="50">
+                        {{ $lecturer->name }}
+                    </td>
                     <td>{{ $lecturer->department->name }}</td>
                     <td>
                         <a class="btn btn-warning" href="{{ route('lecturer.edit', $lecturer) }}"
@@ -34,7 +38,7 @@
                             @method('delete')
 
                             <button type="submit" class="btn btn-danger"
-                                onclick="return confirm('Ate you sure')">Delete</button>
+                                onclick="return confirm('Are you sure')">Delete</button>
 
                         </form>
                     </td>
